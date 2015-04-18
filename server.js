@@ -1,10 +1,14 @@
-var http = require('http');
-function dealWithWebRequest(request, response) {
-response.writeHead(200, {"Content-Type": "text/plain"});
-response.write("Hello Node.js");
-response.end();
-}
-var webserver = http.createServer(dealWithWebRequest).listen(8124,"127.0.0.1");
-webserver.once('listening', function() {
-console.log('Server running at http://127.0.0.1:8124/');
-});
+var express = require('express'); 
+var server = express();
+
+var bp = require('body-parser');
+server.use(express.static(__dirname+'/client'));
+server.use(bp.json());
+server.use(bp.urlencoded({extended:true}));
+server.post('/data', function(req,res)
+{
+	var dataReceived = req.body; 
+	res.status(200).send(dataReceived);
+})
+
+server.listen(5000);
