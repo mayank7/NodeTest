@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+$.ajax({
+    url: '/data',
+    method: 'POST',
+    data: {'empID': 6118},
+    success: function(data){
+    	document.write("Data ,,,,,, "  + JSON.stringify(data));
+    },
+    error: function(error){
+    	document.write("Error msg .... " + JSON.stringify(error));
+    }
+});
+</script>
+</head>
+</html>
